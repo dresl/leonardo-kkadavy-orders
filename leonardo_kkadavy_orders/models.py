@@ -16,6 +16,11 @@ class KkadavyOrders(models.Model):
     was_published_recently.boolean = True
     was_published_recently.short_description = 'Published recently?'
 
+    class Meta:
+        ordering = ['title', ]
+        verbose_name = 'Objednávka'
+        verbose_name_plural = 'Objednávky'
+
 
 class KkadavyProducts(models.Model):
     order = models.ForeignKey(KkadavyOrders,verbose_name="Objednávka")
@@ -24,3 +29,8 @@ class KkadavyProducts(models.Model):
     quantity = models.PositiveIntegerField(verbose_name='Počet')
     def __unicode__(self):
         return self.type_of_product
+
+    class Meta:
+        ordering = ['type_of_product', ]
+        verbose_name = 'Produkt'
+        verbose_name_plural = 'Produkty'

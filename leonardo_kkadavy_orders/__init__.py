@@ -1,13 +1,13 @@
 # encoding: utf-8
 from django.apps import AppConfig
 from django.utils.translation import ugettext_lazy as _
-from .widget import *
 
 default_app_config = 'leonardo_kkadavy_orders.Config'
 
+
 class Default(object):
 
-    optgroup = 'Objednávky knedlíků'
+    optgroup = 'Kkadavy orders'
 
     apps = [
         'leonardo_kkadavy_orders'
@@ -20,7 +20,7 @@ class Default(object):
     public = True
 
 
-class Config(AppConfig):
+class Config(AppConfig, Default):
     name = 'leonardo_kkadavy_orders'
     verbose_name = "Objednávky knedlíků"
 
