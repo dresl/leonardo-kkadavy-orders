@@ -13,8 +13,17 @@ from django.contrib.auth.tokens import \
 from django.contrib.sites.models import Site
 from django.core.urlresolvers import reverse
 from django.utils.translation import ugettext_lazy as _
-from horizon import forms, messages
+from horizon import messages
 from horizon.utils import validators
 from horizon_contrib.forms import SelfHandlingForm
 from leonardo.utils.emails import send_templated_email as send_mail
 from django.conf import settings
+from django import forms
+from django.forms import ModelForm
+
+from .models import KkadavyOrders, KkadavyProducts
+
+
+class KkadavyOrderForm(ModelForm):
+    class Meta:
+        model = KkadavyProducts

@@ -1,0 +1,13 @@
+{% extends "leonardo/common/_modal.html" %}
+{% load i18n %}
+
+{% block form_id %}order_form_kkadavy{% endblock %}
+{% block form_action %}{% url "objedn_list" %}{% endblock %}
+
+{% block modal-body %}
+  {{ block.super }}
+{% endblock %}
+
+{% block modal-footer %}
+<input class="btn btn-submit-order" type="submit" value="{{ submit_label }}" />
+{% endblock %}

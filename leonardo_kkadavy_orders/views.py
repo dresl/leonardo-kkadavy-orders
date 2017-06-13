@@ -10,3 +10,17 @@ from django.utils.decorators import method_decorator
 from django.shortcuts import render
 from leonardo.decorators import require_auth
 from leonardo import forms, messages
+
+from .forms import KkadavyOrderForm
+from django.forms import formset_factory
+
+def manage_articles(request):
+    KkadavyOrderFormSet = formset_factory(KkadavyOrderForm)
+    if request.method == 'POST':
+        formset = KkadavyOrderFormSet(request.POST, request.FILES)
+        if formset.is_valid():
+            # do something with the formset.cleaned_data
+            pass
+    else:
+        formset = KkadavyOrderFormSet()
+    return render(request, 'kkadavy_orders/manage.html', {'formset': formset})

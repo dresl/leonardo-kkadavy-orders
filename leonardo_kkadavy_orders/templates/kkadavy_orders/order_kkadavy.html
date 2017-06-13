@@ -1,0 +1,12 @@
+{% extends "leonardo/common/modal.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Order" %}{% endblock %}
+
+{% block page_header %}
+{% include "horizon/common/_page_header.html" with title=_("Order") %}
+{% endblock %}
+
+{% block body_main %}
+{% include "leonardo_kkadavy/_order_sth.html" %}
+{% endblock %}
