@@ -3,13 +3,13 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from leonardo.module.web.models import Widget
-from leonardo_kkadavy_orders.models import Orders
+from leonardo_kkadavy_orders.models import KkadavyOrders
 
 
 class KkadavyOrdersWidget(Widget):
 
     def get_items(self):
-        return Orders.objects.all().order_by("-datum")
+        return KkadavyOrders.objects.all().order_by("-datum")
 
     class Meta:
         abstract = True
