@@ -9,8 +9,7 @@ class KkadavyProductInline(admin.TabularInline):
 
 class KkadavyOrdersAdmin(admin.ModelAdmin):
     model = KkadavyOrders
-    inlines = [DayInline]
-    filter_horizontal = ('pub_date')
+    inlines = [KkadavyProductInline]
     list_display = ('title', 'pub_date', 'was_published_recently')
     list_filter = ['pub_date','title']
     search_fields = ['title']

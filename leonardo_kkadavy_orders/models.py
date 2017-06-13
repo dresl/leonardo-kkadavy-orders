@@ -6,7 +6,7 @@ from django.utils import timezone
 
 class KkadavyOrders(models.Model):
     title = models.CharField(max_length=200, verbose_name="Název objednávky")
-    pub_date = models.DateTimeField('Datum objednávky', default=timezone.now())
+    pub_date = models.DateTimeField('Datum objednávky')
     def __unicode__(self):
         return self.title
     def was_published_recently(self):
