@@ -19,7 +19,7 @@ class KkadavyOrders(models.Model):
     class Meta:
         ordering = ['title', ]
         verbose_name = 'Objednávka'
-        verbose_name_plural = 'Objednávky'
+        verbose_name_plural = 'Objednavky'
 
 
 class KkadavyProducts(models.Model):
