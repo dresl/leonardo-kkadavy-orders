@@ -10,8 +10,8 @@ class KkadavyProductInline(admin.TabularInline):
 class KkadavyOrdersAdmin(admin.ModelAdmin):
     model = KkadavyOrders
     inlines = [KkadavyProductInline]
-    list_display = ('title', 'pub_date', 'was_published_recently')
-    list_filter = ['pub_date','title']
-    search_fields = ['title']
+    list_display = ('prijmeni', 'pub_date', 'was_published_recently')
+    list_filter = ['pub_date','prijmeni']
+    search_fields = ['prijmeni']
 
 admin.site.register(KkadavyOrders, KkadavyOrdersAdmin)
