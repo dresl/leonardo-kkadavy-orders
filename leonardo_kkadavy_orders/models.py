@@ -5,47 +5,45 @@ from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
 import datetime
 
+
 CHOICES_TYPE_KNEDLIKY = (
  ('HOUSKOVÉ KNEDLÍKY', (
-   ('khouskovy', 'Knedlík houskový'),
-   ('kstarocesky', 'Staročeský knedlík'),
-   ('kvyberovy', 'Výběrový knedlík'),
+   ('khouskovy', 'Knedlík houskový 300g'),
+   ('khouskovy', 'Knedlík houskový 600g'),
+   ('khouskovy', 'Knedlík houskový 800g'),
+   ('kstarocesky', 'Staročeský knedlík 600g'),
+   ('kvyberovy', 'Výběrový knedlík 500g'),
   )
  ),
  ('OVOCNÉ KNEDLÍKY', (
-   ('vhs', 'Kynuté knedlíky plněné ovocem – borůvka'),
-   ('dvd', 'Kynuté knedlík plněné ovocem – jahoda'),
-   ('dvd', 'Kynuté knedlík plněné ovocem – meruňka'),
-   ('dvd', 'Tvarohové knedlíky plněné ovocem – švestka'),
-   ('dvd', 'Tvarohové knedlíky plněné ovocem – jahoda'),
-   ('dvd', 'Tvarohové knedlíky plněné ovocem – meruňka'),
+   ('vhs', 'Kynuté knedlíky plněné ovocem – borůvka 350g'),
+   ('dvd', 'Kynuté knedlík plněné ovocem – jahoda 350g'),
+   ('dvd', 'Kynuté knedlík plněné ovocem – meruňka 350g'),
+   ('dvd', 'Tvarohové knedlíky plněné ovocem – švestka 350g'),
+   ('dvd', 'Tvarohové knedlíky plněné ovocem – jahoda 350g'),
+   ('dvd', 'Tvarohové knedlíky plněné ovocem – meruňka 350g'),
   )
  ),
  ('BRAMBOROVÉ KNEDLÍKY', (
-   ('vhs', 'Bramborové knedlíky plněné uzeninou'),
-   ('vhs', 'Bramborové knedlíky plněné uzeným masem'),
-   ('vhs', 'Bramborové knedlíky 2x plněné uzeným masem'),
-   ('vhs', 'Bramborové taštičky plněné povidly'),
-   ('vhs', 'Bramborové taštičky plněné tvarohem'),
-   ('vhs', 'Bramborový knedlík'),
-   ('vhs', 'Bramborové špalíčky'),
-   ('vhs', 'Bramborové šišky s mákem'),
+   ('vhs', 'Bramborové knedlíky plněné uzeninou 350g'),
+   ('vhs', 'Bramborové knedlíky plněné uzeným masem 350g'),
+   ('vhs', 'Bramborové knedlíky 2x plněné uzeným masem 350g'),
+   ('vhs', 'Bramborové taštičky plněné povidly 350g'),
+   ('vhs', 'Bramborové taštičky plněné tvarohem 350g'),
+   ('vhs', 'Bramborový knedlík 400g'),
+   ('vhs', 'Bramborové špalíčky 400g'),
+   ('vhs', 'Bramborové šišky s mákem 400g'),
 
   )
  ),
  ('OSTATNÍ VÝROBKY', (
-   ('vhs', 'Chlupaté knedlíky'),
-   ('vhs', 'Halušky od Marušky'),
-   ('vhs', 'Babiččiny palačinky'),
-   ('vhs', 'Bramboráky'),
-   ('vhs', 'Listové těsto'),
+   ('vhs', 'Chlupaté knedlíky 400g'),
+   ('vhs', 'Halušky od Marušky 400g'),
+   ('vhs', 'Babiččiny palačinky 300g'),
+   ('vhs', 'Bramboráky 400g'),
+   ('vhs', 'Listové těsto 500g'),
   )
  ),
-)
-
-CHOICES_AMOUNT_KNEDLIKY = (
-    ('350g', '350g'),
-    ('400g', '400g'),
 )
 
 class KkadavyOrders(models.Model):
@@ -74,7 +72,6 @@ class KkadavyOrders(models.Model):
 class KkadavyProducts(models.Model):
     order = models.ForeignKey(KkadavyOrders,verbose_name="Objednávka")
     type_of_product = models.CharField(verbose_name="Produkt", choices=CHOICES_TYPE_KNEDLIKY, max_length=100)
-    amount = models.CharField(verbose_name="Množství", choices=CHOICES_AMOUNT_KNEDLIKY, max_length=100)
     quantity = models.PositiveIntegerField(verbose_name="Počet")
     def __unicode__(self):
         return self.type_of_product
