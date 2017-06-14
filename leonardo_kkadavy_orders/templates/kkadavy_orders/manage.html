@@ -1,9 +1,7 @@
-
+{% load crispy_forms_tags %}
 <form method="post" action="">
     {{ formset.management_form }}
     <table>
-        {% for form in formset %}
-        {{ form }}
-        {% endfor %}
+        {{ formset }}
     </table>
 </form>

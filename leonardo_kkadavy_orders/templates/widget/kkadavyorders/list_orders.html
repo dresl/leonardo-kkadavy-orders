@@ -1,0 +1,17 @@
+{% extends widget.get_base_template %}
+
+{% block content %}
+<h1>Objednávací list</h1>
+<div class="jumbotron update-formset-kkadavy" id="jumbotron">
+</div>
+<script type="text/javascript">
+window.onload = function() {
+    $.ajax({    
+        url: '{% url "objedn_list" %}',
+            success: function(data) {
+            $('.update-formset-kkadavy').html(data);
+            }
+    });
+};
+</script>
+{% endblock %}

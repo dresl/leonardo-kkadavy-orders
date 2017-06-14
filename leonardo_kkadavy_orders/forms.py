@@ -26,4 +26,5 @@ from .models import KkadavyOrders, KkadavyProducts
 
 class KkadavyOrderForm(ModelForm):
     class Meta:
-        model = KkadavyProducts
+        model = KkadavyOrders
+        fields = '__all__'
