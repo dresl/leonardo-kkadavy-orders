@@ -18,7 +18,7 @@ from .forms import KkadavyOrderFormSet
 from leonardo.forms.views import CreateView
 
 
-class KkadavyOrderCreate(forms.views.CreateView):
+class KkadavyOrderCreate(forms.ModalFormView, forms.views.CreateView):
     model = KkadavyOrders
     template_name = "leonardo_kkadavy_orders/kkadavyorders_form.html"
     submit_label = "Objednat"
@@ -33,7 +33,7 @@ class KkadavyOrderCreate(forms.views.CreateView):
 
         ret.update({
         	"view_name": "Objednavaci list",
-        	"modal_size": 'md',
+        	"modal_size": 'lg',
             "modal_header": 'Objednávací list',
         	})
         return ret
@@ -47,5 +47,7 @@ class KkadavyOrderCreate(forms.views.CreateView):
             if orderproducts.is_valid():
                 orderproducts.instance = self.object
                 orderproducts.save()
+                messages.success(self.request, "Objednávka úspěšně dokončena.")
+                print("v pohode - ted se bude odesilat mail")
         return super(KkadavyOrderCreate, self).form_valid(form)
 

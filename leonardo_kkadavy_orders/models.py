@@ -52,8 +52,8 @@ class KkadavyOrders(models.Model):
         max_length=255, verbose_name="Příjmení", default='')
     email = models.EmailField(verbose_name="E-mail", default='')
     telefon = models.PositiveIntegerField(
-        verbose_name="Telefon", default=0)
-    pub_date = models.DateTimeField('Datum Objednavky', default=timezone.now())
+        verbose_name="Telefon", default="")
+    pub_date = models.DateTimeField('Datum Objednavky', auto_now_add=True)
     def __unicode__(self):
         return self.prijmeni
     def was_published_recently(self):

@@ -25,6 +25,14 @@ from .models import KkadavyOrders, KkadavyProducts
 
 
 class KkadavyOrderForm(ModelForm):
+    
+    def clean(self):
+        data = self.cleaned_data
+        jmeno = data["jmeno"]
+        prijmeni = data["prijmeni"]
+        print(jmeno + prijmeni)
+        return data
+
     class Meta:
         model = KkadavyOrders
         exclude = ()

@@ -1,0 +1,132 @@
+{% extends "leonardo/common/_modal.html" %}
+{% load i18n staticfiles crispy_forms_tags %}
+
+{% block form_id %}kkadavy_order_formset{% endblock %}
+{% block form_action %}{% url "objedn_list" %}{% endblock %}
+
+{% block modal-body %}
+<style type="text/css">
+#kkadavy_order_formset .dynamic-form select {
+    height: 32px;
+    padding-left: 5px;
+    border-radius: 3px;
+    background-color: #ffffff;
+}
+#kkadavy_order_formset .dynamic-form input {
+    height: 32px;
+    padding-left: 10px;
+    border-radius: 3px;
+    background-color: #ffffff;
+    border: none;
+}
+#kkadavy_order_formset td, #kkadavy_order_formset th {
+    border-top: 0px!important;
+
+}
+#kkadavy_order_formset th {
+    color: #ffffff;
+}
+#kkadavy_order_formset label {
+    color: #ffffff;
+}
+#kkadavy_order_formset .add-row {
+    background-color: #ffffff;
+    padding: 10px 25px;
+    font-weight: bold;
+    color: #000000;
+    border-radius: 6px;
+    border: 1px solid #333333;
+    transition: all 0.2s ease;
+}
+#kkadavy_order_formset .add-row:hover {
+    background-color: #d6d6d6;
+}
+#kkadavy_order_formset .remove-btn-formset {
+    font-size: 29px;
+    color: #d66a6a;
+    margin-top: 3px;
+    transition: all 0.2s ease;
+}
+#kkadavy_order_formset .remove-btn-formset:hover {
+    color: #c34444;
+}
+#kkadavy_order_formset .remove-btn-formset-inactive {
+    font-size: 29px;
+    color: #CCC;
+    margin-top: 3px;
+    transition: all 0.2s ease;
+}
+#kkadavy_order_formset ul.errorlist li {
+    color: #a93d33;
+}
+.modal-footer {
+    border-top: none;
+}
+</style>
+<div class="col-sm-12">
+    <form action="{% url 'objedn_list' %}" method="post">{% csrf_token %}
+        {% crispy form %}
+        <div class="col-md-12">
+        <table class="table">
+            {{ orderproducts.management_form }}
+
+            {% for form in orderproducts.forms %}
+                {% if forloop.first %}
+                    <thead>
+                    <tr>
+                        {% for field in form.visible_fields %}
+                            <th>{{ field.label|capfirst }}</th>
+                        {% endfor %}
+                    </tr>
+                    </thead>
+                {% endif %}
+                <tr class="{% cycle row1 row2 %} formset_row">
+                    {% for field in form.visible_fields %}
+                        <td>
+                            {# Include the hidden fields in the form #}
+                            {% if forloop.first %}
+                                {% for hidden in form.hidden_fields %}
+                                    {{ hidden }}
+                                {% endfor %}
+                            {% endif %}
+                            {{ field.errors.as_ul }}
+                            {{ field }}
+                        </td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </table>
+        </div>
+        <input class="btn btn-submit-order" type="submit" value="{{ submit_label }}" />
+    </form>
+</div>
+<script src="{% static 'formset/jquery.formset.js' %}"></script>
+<script type="text/javascript">
+setTimeout(function(){
+    $('.formset_row').formset({
+        addText: 'Přidat produkt',
+        deleteText: '',
+        prefix: 'orderproduct_set'
+    });
+    $("#kkadavy_order_formset th:contains('Delete')").text("Zrušit")
+    if ($('.dynamic-form:not([style*="display: none"])').length == 1) {
+        $("#kkadavy_order_formset .delete-row").hide();
+    }
+    $("#kkadavy_order_formset .delete-row").html("<i class='fa fa-times-circle remove-btn-formset' aria-hidden='true'></i>")
+    $("#kkadavy_order_formset .add-row").click(function(){
+        $("#kkadavy_order_formset .delete-row").html("<i class='fa fa-times-circle remove-btn-formset' aria-hidden='true'></i>")
+        $("#kkadavy_order_formset .delete-row").click(function(){
+            setTimeout(function(){
+                if ($('.dynamic-form:not([style*="display: none"])').length == 1) {
+                    $("#kkadavy_order_formset .delete-row").hide();
+                }
+            }, 10);
+        });
+    });
+}, 100);
+</script>
+{% endblock %}
+
+{% block modal-footer %}
+
+{% endblock %}
