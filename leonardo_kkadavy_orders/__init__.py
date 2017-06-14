@@ -17,6 +17,10 @@ class Default(object):
         'leonardo_kkadavy_orders.widget.kkadavyorders.models.KkadavyOrdersWidget'
     ]
 
+    js_files = [
+        'formset/jquery.formset.js'
+    ]
+
     public = True
 
 

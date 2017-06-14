@@ -9,39 +9,39 @@ import datetime
 CHOICES_TYPE_KNEDLIKY = (
  ('HOUSKOVÉ KNEDLÍKY', (
    ('khouskovy', 'Knedlík houskový 300g'),
-   ('khouskovy', 'Knedlík houskový 600g'),
-   ('khouskovy', 'Knedlík houskový 800g'),
+   ('khouskovy600', 'Knedlík houskový 600g'),
+   ('khouskovy800', 'Knedlík houskový 800g'),
    ('kstarocesky', 'Staročeský knedlík 600g'),
    ('kvyberovy', 'Výběrový knedlík 500g'),
   )
  ),
  ('OVOCNÉ KNEDLÍKY', (
-   ('vhs', 'Kynuté knedlíky plněné ovocem – borůvka 350g'),
-   ('dvd', 'Kynuté knedlík plněné ovocem – jahoda 350g'),
-   ('dvd', 'Kynuté knedlík plněné ovocem – meruňka 350g'),
-   ('dvd', 'Tvarohové knedlíky plněné ovocem – švestka 350g'),
-   ('dvd', 'Tvarohové knedlíky plněné ovocem – jahoda 350g'),
-   ('dvd', 'Tvarohové knedlíky plněné ovocem – meruňka 350g'),
+   ('kpb', 'Kynuté knedlíky plněné ovocem – borůvka 350g'),
+   ('kpj', 'Kynuté knedlík plněné ovocem – jahoda 350g'),
+   ('kpm', 'Kynuté knedlík plněné ovocem – meruňka 350g'),
+   ('tps', 'Tvarohové knedlíky plněné ovocem – švestka 350g'),
+   ('tpj', 'Tvarohové knedlíky plněné ovocem – jahoda 350g'),
+   ('tpm', 'Tvarohové knedlíky plněné ovocem – meruňka 350g'),
   )
  ),
  ('BRAMBOROVÉ KNEDLÍKY', (
-   ('vhs', 'Bramborové knedlíky plněné uzeninou 350g'),
-   ('vhs', 'Bramborové knedlíky plněné uzeným masem 350g'),
-   ('vhs', 'Bramborové knedlíky 2x plněné uzeným masem 350g'),
-   ('vhs', 'Bramborové taštičky plněné povidly 350g'),
-   ('vhs', 'Bramborové taštičky plněné tvarohem 350g'),
-   ('vhs', 'Bramborový knedlík 400g'),
-   ('vhs', 'Bramborové špalíčky 400g'),
-   ('vhs', 'Bramborové šišky s mákem 400g'),
+   ('bpu', 'Bramborové knedlíky plněné uzeninou 350g'),
+   ('bpum', 'Bramborové knedlíky plněné uzeným masem 350g'),
+   ('b2pum', 'Bramborové knedlíky 2x plněné uzeným masem 350g'),
+   ('bpp', 'Bramborové taštičky plněné povidly 350g'),
+   ('ptpt', 'Bramborové taštičky plněné tvarohem 350g'),
+   ('bk', 'Bramborový knedlík 400g'),
+   ('bs', 'Bramborové špalíčky 400g'),
+   ('bsm', 'Bramborové šišky s mákem 400g'),
 
   )
  ),
  ('OSTATNÍ VÝROBKY', (
-   ('vhs', 'Chlupaté knedlíky 400g'),
-   ('vhs', 'Halušky od Marušky 400g'),
-   ('vhs', 'Babiččiny palačinky 300g'),
-   ('vhs', 'Bramboráky 400g'),
-   ('vhs', 'Listové těsto 500g'),
+   ('chk', 'Chlupaté knedlíky 400g'),
+   ('hom', 'Halušky od Marušky 400g'),
+   ('bp', 'Babiččiny palačinky 300g'),
+   ('b', 'Bramboráky 400g'),
+   ('lt', 'Listové těsto 500g'),
   )
  ),
 )
@@ -53,7 +53,7 @@ class KkadavyOrders(models.Model):
     email = models.EmailField(verbose_name="E-mail", default='')
     telefon = models.PositiveIntegerField(
         verbose_name="Telefon", default=0)
-    pub_date = models.DateTimeField('Datum objednávky')
+    pub_date = models.DateTimeField('Datum Objednavky', default=timezone.now())
     def __unicode__(self):
         return self.prijmeni
     def was_published_recently(self):
@@ -65,12 +65,12 @@ class KkadavyOrders(models.Model):
 
     class Meta:
         ordering = ['prijmeni', ]
-        verbose_name = 'Objednávka'
-        verbose_name_plural = 'Objednávky'
+        verbose_name = 'Objednavka'
+        verbose_name_plural = 'Objednavky'
 
 
 class KkadavyProducts(models.Model):
-    order = models.ForeignKey(KkadavyOrders,verbose_name="Objednávka")
+    order = models.ForeignKey(KkadavyOrders,verbose_name="Objednavka", related_name="orderproduct_set")
     type_of_product = models.CharField(verbose_name="Produkt", choices=CHOICES_TYPE_KNEDLIKY, max_length=100)
     quantity = models.PositiveIntegerField(verbose_name="Počet")
     def __unicode__(self):

@@ -3,13 +3,16 @@
 {% block content %}
 <h1>Objednávací list</h1>
 <div class="jumbotron update-formset-kkadavy" id="jumbotron">
+{% for item in widget.get_form %}
+<p>{{ item }}</p>
+{% endfor %}
 </div>
 <script type="text/javascript">
 window.onload = function() {
     $.ajax({    
         url: '{% url "objedn_list" %}',
             success: function(data) {
-            $('.update-formset-kkadavy').html(data);
+           		$('.update-formset-kkadavy').html(data);
             }
     });
 };

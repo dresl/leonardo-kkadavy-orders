@@ -9,20 +9,36 @@ from django.core.urlresolvers import reverse
 from django.utils.decorators import method_decorator
 from django.shortcuts import render
 from leonardo.decorators import require_auth
+from django.db import transaction
 from leonardo import forms, messages
-
-from .forms import KkadavyOrderForm
+from django.core.urlresolvers import reverse_lazy
 from django.forms import inlineformset_factory
 from .models import KkadavyOrders, KkadavyProducts
+from .forms import KkadavyOrderFormSet
+from leonardo.forms.views import CreateView
 
-def manage_orders(request):
-    KkadavyOrderFormSet = inlineformset_factory(KkadavyProducts, KkadavyOrders, fields=('jmeno', 'prijmeni', 'telefon', 'email'), extra=5)
-    if request.method == 'POST':
-        formset = KkadavyOrderFormSet(request.POST, request.FILES)
-        if formset.is_valid():
-            # do something with the formset.cleaned_data
-            pass
-    else:
-        formset = KkadavyOrderFormSet()
-    return render(request, 'widget/kkadavyorders/default.html', {'formset': formset})
+
+class KkadavyOrderCreate(CreateView):
+    model = KkadavyOrders
+    fields = ['jmeno', 'prijmeni', 'telefon', 'email']
+    template_name = "leonardo_kkadavy_orders/kkadavyorders_form.html"
+
+    def get_context_data(self, **kwargs):
+        data = super(KkadavyOrderCreate, self).get_context_data(**kwargs)
+        if self.request.POST:
+            data['orderproducts'] = KkadavyOrderFormSet(self.request.POST)
+        else:
+            data['orderproducts'] = KkadavyOrderFormSet()
+        return data
+
+    def form_valid(self, form):
+        context = self.get_context_data()
+        orderproducts = context['orderproducts']
+        with transaction.atomic():
+            self.object = form.save()
+
+            if orderproducts.is_valid():
+                orderproducts.instance = self.object
+                orderproducts.save()
+        return super(KkadavyOrderCreate, self).form_valid(form)
 

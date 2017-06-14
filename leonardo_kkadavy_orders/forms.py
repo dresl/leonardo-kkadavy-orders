@@ -19,7 +19,7 @@ from horizon_contrib.forms import SelfHandlingForm
 from leonardo.utils.emails import send_templated_email as send_mail
 from django.conf import settings
 from django import forms
-from django.forms import ModelForm
+from django.forms import ModelForm, inlineformset_factory
 
 from .models import KkadavyOrders, KkadavyProducts
 
@@ -27,4 +27,7 @@ from .models import KkadavyOrders, KkadavyProducts
 class KkadavyOrderForm(ModelForm):
     class Meta:
         model = KkadavyOrders
-        fields = '__all__'
+        exclude = ()
+
+KkadavyOrderFormSet = inlineformset_factory(KkadavyOrders, KkadavyProducts,
+                                            form=KkadavyOrderForm, extra=1)
