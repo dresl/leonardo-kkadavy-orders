@@ -12,10 +12,11 @@ from leonardo.decorators import require_auth
 from leonardo import forms, messages
 
 from .forms import KkadavyOrderForm
-from django.forms import formset_factory
+from django.forms import inlineformset_factory
+from .models import KkadavyOrders, KkadavyProducts
 
-def manage_articles(request):
-    KkadavyOrderFormSet = formset_factory(KkadavyOrderForm)
+def manage_orders(request):
+    KkadavyOrderFormSet = inlineformset_factory(KkadavyProducts, KkadavyOrders, fields=('jmeno', 'prijmeni', 'telefon', 'email'), extra=5)
     if request.method == 'POST':
         formset = KkadavyOrderFormSet(request.POST, request.FILES)
         if formset.is_valid():
@@ -23,4 +24,5 @@ def manage_articles(request):
             pass
     else:
         formset = KkadavyOrderFormSet()
-    return render(request, 'kkadavy_orders/manage.html', {'formset': formset})
+    return render(request, 'widget/kkadavyorders/default.html', {'formset': formset})
+

@@ -5,5 +5,5 @@ from . import views
 
 urlpatterns = patterns(
     "",
-    url(r"^objednavaci-list/$", views.manage_articles, name="objedn_list"),
+    url(r"^objednavaci-list/$", views.manage_orders, name="objedn_list"),
 )

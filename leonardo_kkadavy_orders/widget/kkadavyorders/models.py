@@ -13,5 +13,5 @@ class KkadavyOrdersWidget(Widget):
 
     class Meta:
         abstract = True
-        verbose_name = _('Order kkadavy')
-        verbose_name_plural = _('Orders kkadavy')
+        verbose_name = 'Order kkadavy'
+        verbose_name_plural = 'Orders kkadavy'
