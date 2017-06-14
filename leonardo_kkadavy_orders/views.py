@@ -18,18 +18,25 @@ from .forms import KkadavyOrderFormSet
 from leonardo.forms.views import CreateView
 
 
-class KkadavyOrderCreate(CreateView):
+class KkadavyOrderCreate(forms.views.CreateView):
     model = KkadavyOrders
-    fields = ['jmeno', 'prijmeni', 'telefon', 'email']
     template_name = "leonardo_kkadavy_orders/kkadavyorders_form.html"
+    submit_label = "Objednat"
 
     def get_context_data(self, **kwargs):
-        data = super(KkadavyOrderCreate, self).get_context_data(**kwargs)
+        ret = super(KkadavyOrderCreate, self).get_context_data(**kwargs)
+
         if self.request.POST:
-            data['orderproducts'] = KkadavyOrderFormSet(self.request.POST)
+            ret['orderproducts'] = KkadavyOrderFormSet(self.request.POST)
         else:
-            data['orderproducts'] = KkadavyOrderFormSet()
-        return data
+            ret['orderproducts'] = KkadavyOrderFormSet()
+
+        ret.update({
+        	"view_name": "Objednavaci list",
+        	"modal_size": 'md',
+            "modal_header": 'Objednávací list',
+        	})
+        return ret
 
     def form_valid(self, form):
         context = self.get_context_data()

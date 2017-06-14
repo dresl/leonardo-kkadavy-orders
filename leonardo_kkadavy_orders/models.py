@@ -8,7 +8,7 @@ import datetime
 
 CHOICES_TYPE_KNEDLIKY = (
  ('HOUSKOVÉ KNEDLÍKY', (
-   ('khouskovy', 'Knedlík houskový 300g'),
+   ('khouskovy300', 'Knedlík houskový 300g'),
    ('khouskovy600', 'Knedlík houskový 600g'),
    ('khouskovy800', 'Knedlík houskový 800g'),
    ('kstarocesky', 'Staročeský knedlík 600g'),
