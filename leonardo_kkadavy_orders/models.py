@@ -51,17 +51,20 @@ class KkadavyOrders(models.Model):
     prijmeni = models.CharField(
         max_length=255, verbose_name="Příjmení", default='')
     email = models.EmailField(verbose_name="E-mail", default='')
-    telefon = models.PositiveIntegerField(
-        verbose_name="Telefon", default="")
+    telefon = models.PositiveIntegerField(verbose_name="Telefon", default="")
+    adresa = models.CharField(max_length=255, verbose_name="Doručovací adresa", default='')
+    firma = models.CharField(max_length=255, verbose_name="Název firmy", default='', blank=True, help_text="Nepovinné pole")
+    ico = models.CharField(max_length=255, verbose_name="IČO", default='', blank=True, help_text="Nepovinné pole")
+    dic = models.CharField(max_length=255, verbose_name="DIČ", default='', blank=True, help_text="Nepovinné pole")
     pub_date = models.DateTimeField('Datum Objednavky', auto_now_add=True)
     def __unicode__(self):
-        return self.prijmeni
+        return (self.prijmeni + self.jmeno)
     def was_published_recently(self):
         now = timezone.now()
         return now - datetime.timedelta(days=2) <= self.pub_date <= now
     was_published_recently.admin_order_field = 'pub_date'
     was_published_recently.boolean = True
-    was_published_recently.short_description = 'Published recently?'
+    was_published_recently.short_description = 'Nedávno vytvořené? (2 dny)'
 
     class Meta:
         ordering = ['prijmeni', ]

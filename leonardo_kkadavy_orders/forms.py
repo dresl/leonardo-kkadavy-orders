@@ -4,7 +4,8 @@ from __future__ import absolute_import
 from django.utils import timezone
 
 from crispy_forms.layout import \
-    HTML, Layout, Field, Fieldset, MultiField, Div
+    HTML, Field, Layout, Fieldset, MultiField, Div, Submit, ButtonHolder
+from crispy_forms.helper import FormHelper
 from crispy_forms.bootstrap import PrependedText
 from django.contrib.auth import authenticate, get_user_model, login
 from django.contrib.auth.models import User
@@ -16,22 +17,21 @@ from django.utils.translation import ugettext_lazy as _
 from horizon import messages
 from horizon.utils import validators
 from horizon_contrib.forms import SelfHandlingForm
-from leonardo.utils.emails import send_templated_email as send_mail
 from django.conf import settings
 from django import forms
-from django.forms import ModelForm, inlineformset_factory
-
+from django.forms import ModelForm, inlineformset_factory, BaseFormSet
+from django.db import models
+from django.forms import Field as DjangoField
 from .models import KkadavyOrders, KkadavyProducts
 
 
+DjangoField.default_error_messages = {
+    'required': "Toto pole je povinné.",
+    'invalid': "Zadejte správný formát e-mailu."
+}
+
+
 class KkadavyOrderForm(ModelForm):
-    
-    def clean(self):
-        data = self.cleaned_data
-        jmeno = data["jmeno"]
-        prijmeni = data["prijmeni"]
-        print(jmeno + prijmeni)
-        return data
 
     class Meta:
         model = KkadavyOrders

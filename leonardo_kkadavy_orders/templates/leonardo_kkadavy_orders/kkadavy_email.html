@@ -1,0 +1,39 @@
+<h2>Objednávka - {{ prijmeni }} - {% now "d.m. Y H:i" %}</h2>
+
+<h3>Jméno: {{ jmeno }} {{ prijmeni }}</h3>
+<table style="border: 1px solid #757575;padding: 6px;width: 100%;" class="email-table">
+    <tr>
+      <th style="text-align: left;padding: 4px">Telefon:</th>
+      <td>{{ telefon }}</td>
+    </tr>
+    <tr>
+      <th style="text-align: left;padding: 4px">E-mail:</th>
+      <td>{{ email }}</td>
+    </tr>
+    <tr>
+      <th style="text-align: left;padding: 4px">Doručovací adresa:</th>
+      <td>{{ adresa }}</td>
+    </tr>
+    <tr>
+      <th style="text-align: left;padding: 4px">Firma:</th>
+      <td>{% if firma %}{{ firma }}{% else %}neuvedeno{% endif %}</td>
+    </tr>
+    <tr>
+      <th style="text-align: left;padding: 4px">IČO:</th>
+      <td>{% if ico %}{{ ico }}{% else %}neuvedeno{% endif %}</td>
+    </tr>
+    <tr>
+      <th style="text-align: left;padding: 4px">DIČ:</th>
+      <td>{% if dic %}{{ dic }}{% else %}neuvedeno{% endif %}</td>
+    </tr>
+</table>
+<h3>Objednávka</h3>
+<hr>
+{% if order.orderproduct_set.count == 0 %}
+<b>Objednavatel nezadal žádné produkty.</b>
+{% else %}
+{% for product in order.orderproduct_set.all %}
+<p>{{ product.get_type_of_product_display }} (množství: {{ product.quantity }})</p>
+<hr>
+{% endfor %}
+{% endif %}

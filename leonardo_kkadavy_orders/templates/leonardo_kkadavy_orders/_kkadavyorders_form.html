@@ -62,11 +62,18 @@
 .modal-footer {
     border-top: none;
 }
+.nav-tabs li.required a:after, form .form-group.required > label:after, form .form-field.required > label:after {
+    color: #9f3632;
+}
+#kkadavy_order_formset .help-icon {
+    color: #ffffff;
+    margin-left: 10px;
+}
 </style>
 <div class="col-sm-12">
     <form action="{% url 'objedn_list' %}" method="post">{% csrf_token %}
         {% crispy form %}
-        <div class="col-md-12">
+        <div class="col-sm-12">
         <table class="table">
             {{ orderproducts.management_form }}
 
@@ -97,7 +104,7 @@
             {% endfor %}
         </table>
         </div>
-        <input class="btn btn-submit-order" type="submit" value="{{ submit_label }}" />
+        <input class="btn btn-submit-order" type="submit" value="{{ submit_label }}" onclick="KkadavySendMail();" />
     </form>
 </div>
 <script src="{% static 'formset/jquery.formset.js' %}"></script>

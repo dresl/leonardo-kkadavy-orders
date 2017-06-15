@@ -15,7 +15,8 @@ from django.core.urlresolvers import reverse_lazy
 from django.forms import inlineformset_factory
 from .models import KkadavyOrders, KkadavyProducts
 from .forms import KkadavyOrderFormSet
-from leonardo.forms.views import CreateView
+from django.views.generic import CreateView
+from leonardo.utils.emails import send_templated_email as send_mail
 
 
 class KkadavyOrderCreate(forms.ModalFormView, forms.views.CreateView):
@@ -43,11 +44,28 @@ class KkadavyOrderCreate(forms.ModalFormView, forms.views.CreateView):
         orderproducts = context['orderproducts']
         with transaction.atomic():
             self.object = form.save()
-
             if orderproducts.is_valid():
                 orderproducts.instance = self.object
                 orderproducts.save()
+                prijmeni_text = orderproducts.data['prijmeni']
+                subject = u"Objednávka - " + prijmeni_text
+                send_mail(
+                    subject,
+                    'leonardo_kkadavy_orders/kkadavy_email.html',
+                    {'jmeno': orderproducts.data['jmeno'],
+                     'prijmeni': orderproducts.data['prijmeni'],
+                     'telefon': orderproducts.data['telefon'],
+                     'email': orderproducts.data['email'],
+                     'adresa': orderproducts.data['adresa'],
+                     'firma': orderproducts.data['firma'],
+                     'ico': orderproducts.data['ico'],
+                     'dic': orderproducts.data['dic'],
+                     'order': KkadavyOrders.objects.get(id=orderproducts.instance.id,),
+                    },
+                    ['nikicresl@gmail.com'],
+                    fail_silently=False,
+                )
                 messages.success(self.request, "Objednávka úspěšně dokončena.")
-                print("v pohode - ted se bude odesilat mail")
+
         return super(KkadavyOrderCreate, self).form_valid(form)
 
