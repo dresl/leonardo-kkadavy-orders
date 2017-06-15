@@ -47,16 +47,16 @@ CHOICES_TYPE_KNEDLIKY = (
 )
 
 class KkadavyOrders(models.Model):
-    jmeno = models.CharField(max_length=255, verbose_name="Jméno", default='')
+    jmeno = models.CharField(max_length=255, verbose_name=u"Jméno", default='')
     prijmeni = models.CharField(
-        max_length=255, verbose_name="Příjmení", default='')
-    email = models.EmailField(verbose_name="E-mail", default='')
-    telefon = models.PositiveIntegerField(verbose_name="Telefon", default="")
-    adresa = models.CharField(max_length=255, verbose_name="Doručovací adresa", default='')
-    firma = models.CharField(max_length=255, verbose_name="Název firmy", default='', blank=True, help_text="Nepovinné pole")
-    ico = models.CharField(max_length=255, verbose_name="IČO", default='', blank=True, help_text="Nepovinné pole")
-    dic = models.CharField(max_length=255, verbose_name="DIČ", default='', blank=True, help_text="Nepovinné pole")
-    pub_date = models.DateTimeField('Datum Objednavky', auto_now_add=True)
+        max_length=255, verbose_name=u"Příjmení", default='')
+    email = models.EmailField(verbose_name=u"E-mail", default='')
+    telefon = models.PositiveIntegerField(verbose_name=u"Telefon", default="")
+    adresa = models.CharField(max_length=255, verbose_name=u"Doručovací adresa", default='')
+    firma = models.CharField(max_length=255, verbose_name=u"Název firmy", default='', blank=True, help_text="Nepovinné pole")
+    ico = models.CharField(max_length=255, verbose_name=u"IČO", default='', blank=True, help_text=u"Nepovinné pole")
+    dic = models.CharField(max_length=255, verbose_name=u"DIČ", default='', blank=True, help_text=u"Nepovinné pole")
+    pub_date = models.DateTimeField(u'Datum objednávky', auto_now_add=True)
     def __unicode__(self):
         return (self.prijmeni + self.jmeno)
     def was_published_recently(self):
@@ -64,22 +64,22 @@ class KkadavyOrders(models.Model):
         return now - datetime.timedelta(days=2) <= self.pub_date <= now
     was_published_recently.admin_order_field = 'pub_date'
     was_published_recently.boolean = True
-    was_published_recently.short_description = 'Nedávno vytvořené? (2 dny)'
+    was_published_recently.short_description = u'Nedávno vytvořené? (2 dny)'
 
     class Meta:
         ordering = ['prijmeni', ]
-        verbose_name = 'Objednavka'
-        verbose_name_plural = 'Objednavky'
+        verbose_name = u'Objednávka'
+        verbose_name_plural = u'Objednávky'
 
 
 class KkadavyProducts(models.Model):
-    order = models.ForeignKey(KkadavyOrders,verbose_name="Objednavka", related_name="orderproduct_set")
-    type_of_product = models.CharField(verbose_name="Produkt", choices=CHOICES_TYPE_KNEDLIKY, max_length=100)
-    quantity = models.PositiveIntegerField(verbose_name="Počet")
+    order = models.ForeignKey(KkadavyOrders,verbose_name=u"Objednávka", related_name="orderproduct_set")
+    type_of_product = models.CharField(verbose_name=u"Produkt", choices=CHOICES_TYPE_KNEDLIKY, max_length=100)
+    quantity = models.PositiveIntegerField(verbose_name=u"Počet")
     def __unicode__(self):
         return self.type_of_product
 
     class Meta:
         ordering = ['type_of_product', ]
-        verbose_name = 'Produkt'
-        verbose_name_plural = 'Produkty'
+        verbose_name = u'Produkt'
+        verbose_name_plural = u'Produkty'

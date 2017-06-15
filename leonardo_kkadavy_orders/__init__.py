@@ -26,7 +26,7 @@ class Default(object):
 
 class Config(AppConfig, Default):
     name = 'leonardo_kkadavy_orders'
-    verbose_name = "Objednavky knedliku"
+    verbose_name = u"Objednávky knedlíků"
 
 
 default = Default()
