@@ -1,7 +1,7 @@
-<h2>Objednávka - {{ prijmeni }} - {% now "d.m. Y H:i" %}</h2>
+<h2>Objednávka - {{ jmeno }} {{ prijmeni }} - {% now "d.m. Y H:i" %}</h2>
 
 <h3>Jméno: {{ jmeno }} {{ prijmeni }}</h3>
-<table style="border: 1px solid #757575;padding: 6px;width: 100%;" class="email-table">
+<table style="border: 1px solid #757575;padding: 6px;width: 100%;">
     <tr>
       <th style="text-align: left;padding: 4px">Telefon:</th>
       <td>{{ telefon }}</td>
@@ -27,13 +27,21 @@
       <td>{% if dic %}{{ dic }}{% else %}neuvedeno{% endif %}</td>
     </tr>
 </table>
-<h3>Objednávka</h3>
+<h3>Objednávka:</h3>
 <hr>
 {% if order.orderproduct_set.count == 0 %}
 <b>Objednavatel nezadal žádné produkty.</b>
 {% else %}
+<table style="border: 1px solid #e8e8e8;padding: 6px;width: 100%;border-collapse: collapse;">
+    <tr>
+        <th style="text-align: left;padding: 8px;border-bottom: 1px solid #ececec;">Produkt</th>
+        <th style="text-align: left;padding: 8px;border-bottom: 1px solid #ececec;">Množství</th>
+    </tr>
 {% for product in order.orderproduct_set.all %}
-<p>{{ product.get_type_of_product_display }} (množství: {{ product.quantity }})</p>
-<hr>
+    <tr style="background-color: {% cycle '#ffffff' '#f9f9f9' %}">
+      <td style="text-align: left;padding: 8px">{{ product.get_type_of_product_display }}</td>
+      <td style="text-align: left;padding: 8px">{{ product.quantity }}</td>
+    </tr>
 {% endfor %}
+</table>
 {% endif %}

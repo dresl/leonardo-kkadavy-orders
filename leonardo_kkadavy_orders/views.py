@@ -65,7 +65,6 @@ class KkadavyOrderCreate(forms.ModalFormView, forms.views.CreateView):
                     ['nikicresl@gmail.com'],
                     fail_silently=False,
                 )
-                messages.success(self.request, "Objednávka úspěšně dokončena.")
 
         return super(KkadavyOrderCreate, self).form_valid(form)
 
