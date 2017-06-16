@@ -62,7 +62,7 @@ class KkadavyOrderCreate(forms.ModalFormView, forms.views.CreateView):
                      'dic': orderproducts.data['dic'],
                      'order': KkadavyOrders.objects.get(id=orderproducts.instance.id,),
                     },
-                    ['nikicresl@gmail.com'],
+                    [email.strip() for email in settings.ORDER_DEFAULT_TO_EMAIL.split(',')],
                     fail_silently=False,
                 )
 

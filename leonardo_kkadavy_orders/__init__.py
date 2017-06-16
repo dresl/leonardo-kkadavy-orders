@@ -16,6 +16,10 @@ class Default(object):
     widgets = [
         'leonardo_kkadavy_orders.widget.kkadavyorders.models.KkadavyOrdersWidget'
     ]
+    config = {
+        'ORDER_DEFAULT_TO_EMAIL':
+        ('to@email.com', u"E-mail, na který se budou odesílat objednávky."),
+    }
 
     js_files = [
         'formset/jquery.formset.js'
