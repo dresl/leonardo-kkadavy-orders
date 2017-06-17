@@ -17,8 +17,8 @@ CHOICES_TYPE_KNEDLIKY = (
  ),
  ('OVOCNÉ KNEDLÍKY', (
    ('kpb', 'Kynuté knedlíky plněné ovocem – borůvka 350g'),
-   ('kpj', 'Kynuté knedlík plněné ovocem – jahoda 350g'),
-   ('kpm', 'Kynuté knedlík plněné ovocem – meruňka 350g'),
+   ('kpj', 'Kynuté knedlíky plněné ovocem – jahoda 350g'),
+   ('kpm', 'Kynuté knedlíky plněné ovocem – meruňka 350g'),
    ('tps', 'Tvarohové knedlíky plněné ovocem – švestka 350g'),
    ('tpj', 'Tvarohové knedlíky plněné ovocem – jahoda 350g'),
    ('tpm', 'Tvarohové knedlíky plněné ovocem – meruňka 350g'),
