@@ -5,71 +5,6 @@
 {% block form_action %}{% url "objedn_list" %}{% endblock %}
 
 {% block modal-body %}
-<style type="text/css">
-#kkadavy_order_formset .dynamic-form select {
-    height: 32px;
-    padding-left: 5px;
-    border-radius: 3px;
-    background-color: #ffffff;
-}
-#kkadavy_order_formset .dynamic-form input {
-    height: 32px;
-    padding-left: 10px;
-    border-radius: 3px;
-    background-color: #ffffff;
-    border: none;
-}
-#kkadavy_order_formset td, #kkadavy_order_formset th {
-    border-top: 0px!important;
-
-}
-#kkadavy_order_formset th {
-    color: #ffffff;
-}
-#kkadavy_order_formset label {
-    color: #ffffff;
-}
-#kkadavy_order_formset .add-row {
-    background-color: #ffffff;
-    padding: 10px 25px;
-    font-weight: bold;
-    color: #000000;
-    border-radius: 6px;
-    border: 1px solid #333333;
-    transition: all 0.2s ease;
-}
-#kkadavy_order_formset .add-row:hover {
-    background-color: #d6d6d6;
-}
-#kkadavy_order_formset .remove-btn-formset {
-    font-size: 29px;
-    color: #d66a6a;
-    margin-top: 3px;
-    transition: all 0.2s ease;
-}
-#kkadavy_order_formset .remove-btn-formset:hover {
-    color: #c34444;
-}
-#kkadavy_order_formset .remove-btn-formset-inactive {
-    font-size: 29px;
-    color: #CCC;
-    margin-top: 3px;
-    transition: all 0.2s ease;
-}
-#kkadavy_order_formset ul.errorlist li {
-    color: #a93d33;
-}
-.modal-footer {
-    border-top: none;
-}
-.nav-tabs li.required a:after, form .form-group.required > label:after, form .form-field.required > label:after {
-    color: #9f3632;
-}
-#kkadavy_order_formset .help-icon {
-    color: #ffffff;
-    margin-left: 10px;
-}
-</style>
 <div class="col-sm-12">
     <form action="{% url 'objedn_list' %}" method="post">{% csrf_token %}
         {% crispy form %}
@@ -104,7 +39,7 @@
             {% endfor %}
         </table>
         </div>
-        <input class="btn btn-submit-order" type="submit" value="{{ submit_label }}" onclick="KkadavySendMail();" />
+        <input class="btn btn-submit-order" type="submit" value="{{ submit_label }}"/>
     </form>
 </div>
 <script src="{% static 'formset/jquery.formset.js' %}"></script>
