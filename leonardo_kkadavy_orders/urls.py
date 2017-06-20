@@ -4,5 +4,5 @@ from django.views.generic import RedirectView
 from . import views
 
 urlpatterns = [
-    url(r'objednavaci-list/pridat/$', views.KkadavyOrderCreate.as_view(), name='objedn_list'),
+    url(r'^objednavaci-list/pridat/$', views.KkadavyOrderCreate.as_view(), name='objedn_list'),
 ]
