@@ -8,43 +8,71 @@ import datetime
 
 CHOICES_TYPE_KNEDLIKY = (
  ('HOUSKOVÉ KNEDLÍKY', (
-   ('khouskovy300', 'Knedlík houskový 300g'),
-   ('khouskovy600', 'Knedlík houskový 600g'),
-   ('khouskovy800', 'Knedlík houskový 800g'),
+   ('khouskovy300', 'Knedlík houskový - krájený 300g'),
+   ('khouskovy600', 'Knedlík houskový - krájený 600g'),
+   ('khouskovy800', 'Knedlík houskový - krájený 800g'),
    ('kstarocesky', 'Staročeský knedlík 600g'),
-   ('kvyberovy', 'Výběrový knedlík 500g'),
+   ('kkarlovarsky', 'Karlovarský knedlík (při objednávce nad 15ks) 500g'),
   )
  ),
- ('OVOCNÉ KNEDLÍKY', (
-   ('kpb', 'Kynuté knedlíky plněné ovocem – borůvka 350g'),
-   ('kpj', 'Kynuté knedlíky plněné ovocem – jahoda 350g'),
-   ('kpm', 'Kynuté knedlíky plněné ovocem – meruňka 350g'),
-   ('tps', 'Tvarohové knedlíky plněné ovocem – švestka 350g'),
-   ('tpj', 'Tvarohové knedlíky plněné ovocem – jahoda 350g'),
-   ('tpm', 'Tvarohové knedlíky plněné ovocem – meruňka 350g'),
+ ('KYNUTÉ KNEDLÍKY', (
+   ('kpb', 'Kynuté knedlíky plněné ovocem – borůvka 350g v bal. 4ks'),
+   ('kpb1', 'Kynuté knedlíky plněné ovocem – borůvka 350g v bal. 1ks (1 knedlík)'),
+   ('kpj', 'Kynuté knedlíky plněné ovocem – jahoda 350g v bal. 4ks'),
+   ('kpj1', 'Kynuté knedlíky plněné ovocem – jahoda 350g v bal. 1ks (1 knedlík)'),
+   ('kpm', 'Kynuté knedlíky plněné ovocem – meruňka 350g v bal. 4ks'),
+   ('kpm1', 'Kynuté knedlíky plněné ovocem – meruňka 350g v bal. 1ks (1 knedlík) - pro restaurace'),
+   ('ksnb', 'Kynuté knedlíky s náplní – borůvka 350g v bal. 6ks'),
+   ('ksnb1', 'Kynuté knedlíky s náplní – borůvka 350g v bal. 1ks (1 knedlík)'),
+   ('ksnj', 'Kynuté knedlíky s náplní – jahoda 350g v bal. 6ks'),
+   ('ksnj1', 'Kynuté knedlíky s náplní – jahoda 350g v bal. 1ks (1 knedlík)'),
+   ('ksnm', 'Kynuté knedlíky s náplní – meruňka 350g v bal. 6ks'),
+   ('ksnm1', 'Kynuté knedlíky s náplní – meruňka 350g v bal. 1ks (1 knedlík) pro restaurace'),
+  )
+ ),
+ ('TVAROHOVÉ KNEDLÍKY', (
+   ('tps', 'Tvarohové knedlíky plněné ovocem – švestka 350g v bal. 6ks'),
+   ('tps1', 'Tvarohové knedlíky plněné ovocem – švestka 350g v bal. 1ks (1 knedlík)'),
+   ('tpj', 'Tvarohové knedlíky plněné ovocem – jahoda 350g v bal. 6ks'),
+   ('tpj1', 'Tvarohové knedlíky plněné ovocem – jahoda 350g v bal. 1ks (1 knedlík)'),
+   ('tpm', 'Tvarohové knedlíky plněné ovocem – meruňka 350g v bal. 6ks'),
+   ('tpm1', 'Tvarohové knedlíky plněné ovocem – meruňka 350g v bal. 1ks (1 knedlík) - pro restaurace'),
   )
  ),
  ('BRAMBOROVÉ KNEDLÍKY', (
-   ('bpu', 'Bramborové knedlíky plněné uzeninou 350g'),
-   ('bpum', 'Bramborové knedlíky plněné uzeným masem 350g'),
-   ('b2pum', 'Bramborové knedlíky 2x plněné uzeným masem 350g'),
-   ('bpp', 'Bramborové taštičky plněné povidly 350g'),
-   ('ptpt', 'Bramborové taštičky plněné tvarohem 350g'),
+   ('bpum', 'Bramborové knedlíky plněné uzeným masem 350g v bal. 6ks'),
+   ('bpum1', 'Bramborové knedlíky plněné uzeným masem v bal. 1ks'),
+   ('b2pum', 'Bramborové knedlíky 2x plněné uzeným masem 350g v bal. 6ks'),
+   ('b2pum1', 'Bramborové knedlíky 2x plněné uzeným masem v bal. 1ks'),
+   ('bkss', 'Bramborové knedlíky se švestkami 500g v bal. 8ks'),
+   ('bkss1', 'Bramborové knedlíky se švestkami v bal. 1ks'),
+   ('bpp', 'Bramborové taštičky plněné povidly 350g v bal. 6ks'),
+   ('bpp1', 'Bramborové taštičky plněné povidly v bal. 1ks'),
+   ('ptpt', 'Bramborové taštičky plněné tvarohem 350g v bal. 6ks'),
+   ('ptpt1', 'Bramborové taštičky plněné tvarohem v bal. 1ks'),
    ('bk', 'Bramborový knedlík 400g'),
+   ('bkk', 'Bramborový knedlík - krájený 400g'),
    ('bs', 'Bramborové špalíčky 400g'),
+   ('bskg', 'Bramborové špalíčky 1kg'),
    ('bsm', 'Bramborové šišky s mákem 400g'),
-
+   ('bsmkg', 'Bramborové šišky s mákem 1kg'),
   )
  ),
  ('OSTATNÍ VÝROBKY', (
    ('chk', 'Chlupaté knedlíky 400g'),
+   ('chkkg', 'Chlupaté knedlíky 1kg'),
    ('hom', 'Halušky od Marušky 400g'),
-   ('bp', 'Babiččiny palačinky 300g'),
-   ('b', 'Bramboráky 400g'),
+   ('homkg', 'Halušky od Marušky 1kg'),
+   ('bp', 'Babiččiny palačinky 300g v bal. 3ks'),
+   ('bp1', 'Babiččiny palačinky 1ks'),
+   ('b', 'Bramboráky 400g v bal. 5ks'),
+   ('b1', 'Bramboráky 1ks'),
    ('lt', 'Listové těsto 500g'),
+   ('ltkg', 'Listové těsto 1kg'),
   )
  ),
 )
+
 
 class KkadavyOrders(models.Model):
     jmeno = models.CharField(max_length=255, verbose_name=u"Jméno", default='')
