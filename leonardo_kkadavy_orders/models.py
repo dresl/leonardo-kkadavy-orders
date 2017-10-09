@@ -5,38 +5,39 @@ from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
 import datetime
 
-
 CHOICES_TYPE_KNEDLIKY = (
  ('HOUSKOVÉ KNEDLÍKY', (
-   ('khouskovy300', 'Knedlík houskový - krájený 300g'),
-   ('khouskovy600', 'Knedlík houskový - krájený 600g'),
-   ('khouskovy800', 'Knedlík houskový - krájený 800g'),
+   ('khouskovy800', 'Knedlík houskový - velký 800g'),
+   ('khouskovy800kr', 'Knedlík houskový - velký krájený 800g'),
+   ('khouskovy600', 'Knedlík houskový - malý 600g'),
+   ('khouskovy600kr', 'Knedlík houskový - malý krájený 600g'),
+   ('khouskovy300', 'Knedlík houskový - mini 300g'),
    ('kstarocesky', 'Staročeský knedlík 600g'),
    ('kkarlovarsky', 'Karlovarský knedlík (při objednávce nad 15ks) 500g'),
   )
  ),
  ('KYNUTÉ KNEDLÍKY', (
    ('kpb', 'Kynuté knedlíky plněné ovocem – borůvka 350g v bal. 4ks'),
-   ('kpb1', 'Kynuté knedlíky plněné ovocem – borůvka 350g v bal. 1ks (1 knedlík)'),
+   ('kpb1', 'Kynuté knedlíky plněné ovocem – borůvka v bal. 1ks (1 knedlík)'),
    ('kpj', 'Kynuté knedlíky plněné ovocem – jahoda 350g v bal. 4ks'),
-   ('kpj1', 'Kynuté knedlíky plněné ovocem – jahoda 350g v bal. 1ks (1 knedlík)'),
+   ('kpj1', 'Kynuté knedlíky plněné ovocem – jahoda v bal. 1ks (1 knedlík)'),
    ('kpm', 'Kynuté knedlíky plněné ovocem – meruňka 350g v bal. 4ks'),
-   ('kpm1', 'Kynuté knedlíky plněné ovocem – meruňka 350g v bal. 1ks (1 knedlík)'),
+   ('kpm1', 'Kynuté knedlíky plněné ovocem – meruňka v bal. 1ks (1 knedlík)'),
    ('ksnb', 'Kynuté knedlíky s náplní – borůvka 350g v bal. 6ks'),
-   ('ksnb1', 'Kynuté knedlíky s náplní – borůvka 350g v bal. 1ks (1 knedlík)'),
+   ('ksnb1', 'Kynuté knedlíky s náplní – borůvka v bal. 1ks (1 knedlík)'),
    ('ksnj', 'Kynuté knedlíky s náplní – jahoda 350g v bal. 6ks'),
-   ('ksnj1', 'Kynuté knedlíky s náplní – jahoda 350g v bal. 1ks (1 knedlík)'),
+   ('ksnj1', 'Kynuté knedlíky s náplní – jahoda v bal. 1ks (1 knedlík)'),
    ('ksnm', 'Kynuté knedlíky s náplní – meruňka 350g v bal. 6ks'),
-   ('ksnm1', 'Kynuté knedlíky s náplní – meruňka 350g v bal. 1ks (1 knedlík)'),
+   ('ksnm1', 'Kynuté knedlíky s náplní – meruňka v bal. 1ks (1 knedlík)'),
   )
  ),
  ('TVAROHOVÉ KNEDLÍKY', (
    ('tps', 'Tvarohové knedlíky plněné ovocem – švestka 350g v bal. 6ks'),
-   ('tps1', 'Tvarohové knedlíky plněné ovocem – švestka 350g v bal. 1ks (1 knedlík)'),
+   ('tps1', 'Tvarohové knedlíky plněné ovocem – švestka v bal. 1ks (1 knedlík)'),
    ('tpj', 'Tvarohové knedlíky plněné ovocem – jahoda 350g v bal. 6ks'),
-   ('tpj1', 'Tvarohové knedlíky plněné ovocem – jahoda 350g v bal. 1ks (1 knedlík)'),
+   ('tpj1', 'Tvarohové knedlíky plněné ovocem – jahoda v bal. 1ks (1 knedlík)'),
    ('tpm', 'Tvarohové knedlíky plněné ovocem – meruňka 350g v bal. 6ks'),
-   ('tpm1', 'Tvarohové knedlíky plněné ovocem – meruňka 350g v bal. 1ks (1 knedlík)'),
+   ('tpm1', 'Tvarohové knedlíky plněné ovocem – meruňka v bal. 1ks (1 knedlík)'),
   )
  ),
  ('BRAMBOROVÉ KNEDLÍKY', (
