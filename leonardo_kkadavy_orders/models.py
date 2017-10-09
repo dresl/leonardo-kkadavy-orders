@@ -21,13 +21,13 @@ CHOICES_TYPE_KNEDLIKY = (
    ('kpj', 'Kynuté knedlíky plněné ovocem – jahoda 350g v bal. 4ks'),
    ('kpj1', 'Kynuté knedlíky plněné ovocem – jahoda 350g v bal. 1ks (1 knedlík)'),
    ('kpm', 'Kynuté knedlíky plněné ovocem – meruňka 350g v bal. 4ks'),
-   ('kpm1', 'Kynuté knedlíky plněné ovocem – meruňka 350g v bal. 1ks (1 knedlík) - pro restaurace'),
+   ('kpm1', 'Kynuté knedlíky plněné ovocem – meruňka 350g v bal. 1ks (1 knedlík)'),
    ('ksnb', 'Kynuté knedlíky s náplní – borůvka 350g v bal. 6ks'),
    ('ksnb1', 'Kynuté knedlíky s náplní – borůvka 350g v bal. 1ks (1 knedlík)'),
    ('ksnj', 'Kynuté knedlíky s náplní – jahoda 350g v bal. 6ks'),
    ('ksnj1', 'Kynuté knedlíky s náplní – jahoda 350g v bal. 1ks (1 knedlík)'),
    ('ksnm', 'Kynuté knedlíky s náplní – meruňka 350g v bal. 6ks'),
-   ('ksnm1', 'Kynuté knedlíky s náplní – meruňka 350g v bal. 1ks (1 knedlík) pro restaurace'),
+   ('ksnm1', 'Kynuté knedlíky s náplní – meruňka 350g v bal. 1ks (1 knedlík)'),
   )
  ),
  ('TVAROHOVÉ KNEDLÍKY', (
@@ -36,7 +36,7 @@ CHOICES_TYPE_KNEDLIKY = (
    ('tpj', 'Tvarohové knedlíky plněné ovocem – jahoda 350g v bal. 6ks'),
    ('tpj1', 'Tvarohové knedlíky plněné ovocem – jahoda 350g v bal. 1ks (1 knedlík)'),
    ('tpm', 'Tvarohové knedlíky plněné ovocem – meruňka 350g v bal. 6ks'),
-   ('tpm1', 'Tvarohové knedlíky plněné ovocem – meruňka 350g v bal. 1ks (1 knedlík) - pro restaurace'),
+   ('tpm1', 'Tvarohové knedlíky plněné ovocem – meruňka 350g v bal. 1ks (1 knedlík)'),
   )
  ),
  ('BRAMBOROVÉ KNEDLÍKY', (
