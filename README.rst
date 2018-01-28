@@ -1,9 +1,9 @@
 
-====================
-Leonardo form for PS
-====================
+===============================
+Leonardo pegastudio form for PS
+===============================
 
-Form for pegastudio site
+Order module for Pegastudio
 
 .. contents::
     :local:
@@ -13,15 +13,9 @@ Installation
 
 .. code-block:: bash
 
-    pip install -e git+https://github.com/dresl/leonardo-form-pegastudio#egg=leonardo_form_pegastudio
-
-Load new template to db
-
-.. code-block:: bash
-
-    python manage.py sync_all -f
+    pip install leonardo-form-pegastudio
 
 Read More
----------
+=========
 
-* https://github.com/django-leonardo
+* https://github.com/django-leonardo/django-leonardo

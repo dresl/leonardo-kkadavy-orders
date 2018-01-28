@@ -21,7 +21,7 @@ from leonardo.utils.emails import send_templated_email as send_mail
 
 class PegastudioOrderCreate(forms.ModalFormView, forms.views.CreateView):
     model = PegastudioOrders
-    template_name = "leonardo_form_pegastudio/kkadavyorders_form.html"
+    template_name = "leonardo_form_pegastudio/pegastudioorders_form.html"
     submit_label = "Objednat"
 
     def get_context_data(self, **kwargs):
@@ -51,7 +51,7 @@ class PegastudioOrderCreate(forms.ModalFormView, forms.views.CreateView):
                 subject = u"Objednávka - " + prijmeni_text
                 send_mail(
                     subject,
-                    'leonardo_form_pegastudio/kkadavy_email.html',
+                    'leonardo_form_pegastudio/pegastudio_email.html',
                     {'jmeno': orderproducts.data['jmeno'],
                      'prijmeni': orderproducts.data['prijmeni'],
                      'telefon': orderproducts.data['telefon'],
