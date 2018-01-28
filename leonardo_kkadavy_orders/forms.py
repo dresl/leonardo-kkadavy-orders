@@ -20,7 +20,7 @@ from django.conf import settings
 from django.forms import inlineformset_factory
 from django.db import models
 from django.forms import Field as DjangoField
-from .models import PegastudioOrders, PegastudioProducts
+from .models import KkadavyOrders, KkadavyProducts
 from django.conf import settings
 from horizon import forms, messages
 
@@ -43,11 +43,11 @@ def my_handle(self, request, data):
 
 SelfHandlingModelForm.handle = my_handle
 
-class PegastudioOrderForm(SelfHandlingModelForm):
+class KkadavyOrderForm(SelfHandlingModelForm):
 
     class Meta:
-        model = PegastudioOrders
+        model = KkadavyOrders
         exclude = ()
 
-PegastudioOrderFormSet = inlineformset_factory(PegastudioOrders, PegastudioProducts,
-                                            form=PegastudioOrderForm, extra=1)
+KkadavyOrderFormSet = inlineformset_factory(KkadavyOrders, KkadavyProducts,
+                                            form=KkadavyOrderForm, extra=1)

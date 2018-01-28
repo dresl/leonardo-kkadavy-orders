@@ -1,9 +1,9 @@
 
-===============================
-Leonardo pegastudio form for PS
-===============================
+==========================
+Leonardo leonardo-kkadavy-orders
+==========================
 
-Order module for Pegastudio
+Order module for KKadavy
 
 .. contents::
     :local:
@@ -13,7 +13,7 @@ Installation
 
 .. code-block:: bash
 
-    pip install leonardo-form-pegastudio
+    pip install leonardo-kkadavy-orders
 
 Read More
 =========

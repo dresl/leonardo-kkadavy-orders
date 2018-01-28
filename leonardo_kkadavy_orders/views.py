@@ -13,30 +13,30 @@ from django.db import transaction
 from leonardo import forms, messages
 from django.core.urlresolvers import reverse_lazy
 from django.forms import inlineformset_factory
-from .models import PegastudioOrders, PegastudioProducts
-from .forms import PegastudioOrderFormSet
+from .models import KkadavyOrders, KkadavyProducts
+from .forms import KkadavyOrderFormSet
 from django.views.generic import CreateView
 from leonardo.utils.emails import send_templated_email as send_mail
 
 
-class PegastudioOrderCreate(forms.ModalFormView, forms.views.CreateView):
-    model = PegastudioOrders
-    template_name = "leonardo_form_pegastudio/pegastudioorders_form.html"
+class KkadavyOrderCreate(forms.ModalFormView, forms.views.CreateView):
+    model = KkadavyOrders
+    template_name = "leonardo_kkadavy_orders/kkadavyorders_form.html"
     submit_label = "Objednat"
 
     def get_context_data(self, **kwargs):
-        ret = super(PegastudioOrderCreate, self).get_context_data(**kwargs)
+        ret = super(KkadavyOrderCreate, self).get_context_data(**kwargs)
 
         if self.request.POST:
-            ret['orderproducts'] = PegastudioOrderFormSet(self.request.POST)
+            ret['orderproducts'] = KkadavyOrderFormSet(self.request.POST)
         else:
-            ret['orderproducts'] = PegastudioOrderFormSet()
+            ret['orderproducts'] = KkadavyOrderFormSet()
 
         ret.update({
-            "view_name": "Objednávací list",
-            "modal_size": 'lg',
+        	"view_name": "Objednavaci list",
+        	"modal_size": 'lg',
             "modal_header": 'Objednávací list',
-            })
+        	})
         return ret
 
     def form_valid(self, form):
@@ -51,7 +51,7 @@ class PegastudioOrderCreate(forms.ModalFormView, forms.views.CreateView):
                 subject = u"Objednávka - " + prijmeni_text
                 send_mail(
                     subject,
-                    'leonardo_form_pegastudio/pegastudio_email.html',
+                    'leonardo_kkadavy_orders/kkadavy_email.html',
                     {'jmeno': orderproducts.data['jmeno'],
                      'prijmeni': orderproducts.data['prijmeni'],
                      'telefon': orderproducts.data['telefon'],
@@ -60,10 +60,11 @@ class PegastudioOrderCreate(forms.ModalFormView, forms.views.CreateView):
                      'firma': orderproducts.data['firma'],
                      'ico': orderproducts.data['ico'],
                      'dic': orderproducts.data['dic'],
-                     'order': PegastudioOrders.objects.get(id=orderproducts.instance.id,),
+                     'order': KkadavyOrders.objects.get(id=orderproducts.instance.id,),
                     },
                     [email.strip() for email in settings.ORDER_DEFAULT_TO_EMAIL.split(',')],
                     fail_silently=False,
                 )
 
-        return super(PegastudioOrderCreate, self).form_valid(form)
+        return super(KkadavyOrderCreate, self).form_valid(form)
+

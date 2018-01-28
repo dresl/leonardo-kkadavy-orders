@@ -1,16 +1,16 @@
 {% extends "leonardo/common/_modal.html" %}
 {% load i18n staticfiles crispy_forms_tags %}
 
-{% block form_id %}pegastudio_order_formset{% endblock %}
+{% block form_id %}kkadavy_order_formset{% endblock %}
 {% block form_action %}{% url "objedn_list" %}{% endblock %}
 
 {% block modal-body %}
 <div class="col-sm-12">
     <br>
-<!--     <div class="alert alert-info alert-dismissable fade in">
+    <div class="alert alert-info alert-dismissable fade in">
         <strong>INFO!</strong> Pro nové zákazníky zavezeme objednávku až po telefonické domluvě. (+420 775 920 020)
         <a href="#" class="close-alert" data-dismiss="alert" aria-label="close">&times;</a>
-    </div> -->
+    </div>
     <form action="{% url 'objedn_list' %}" method="post">{% csrf_token %}
         {% crispy form %}
         <div class="col-sm-12">
@@ -55,17 +55,17 @@ setTimeout(function(){
         deleteText: '',
         prefix: 'orderproduct_set'
     });
-    $("#pegastudio_order_formset th:contains('Delete')").text("Zrušit")
+    $("#kkadavy_order_formset th:contains('Delete')").text("Zrušit")
     if ($('.dynamic-form:not([style*="display: none"])').length == 1) {
-        $("#pegastudio_order_formset .delete-row").hide();
+        $("#kkadavy_order_formset .delete-row").hide();
     }
-    $("#pegastudio_order_formset .delete-row").html("<i class='fa fa-times-circle remove-btn-formset' aria-hidden='true'></i>")
-    $("#pegastudio_order_formset .add-row").click(function(){
-        $("#pegastudio_order_formset .delete-row").html("<i class='fa fa-times-circle remove-btn-formset' aria-hidden='true'></i>")
-        $("#pegastudio_order_formset .delete-row").click(function(){
+    $("#kkadavy_order_formset .delete-row").html("<i class='fa fa-times-circle remove-btn-formset' aria-hidden='true'></i>")
+    $("#kkadavy_order_formset .add-row").click(function(){
+        $("#kkadavy_order_formset .delete-row").html("<i class='fa fa-times-circle remove-btn-formset' aria-hidden='true'></i>")
+        $("#kkadavy_order_formset .delete-row").click(function(){
             setTimeout(function(){
                 if ($('.dynamic-form:not([style*="display: none"])').length == 1) {
-                    $("#pegastudio_order_formset .delete-row").hide();
+                    $("#kkadavy_order_formset .delete-row").hide();
                 }
             }, 10);
         });

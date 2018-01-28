@@ -2,26 +2,23 @@
 from django.apps import AppConfig
 from django.utils.translation import ugettext_lazy as _
 
-default_app_config = 'leonardo_form_pegastudio.Config'
+default_app_config = 'leonardo_kkadavy_orders.Config'
 
 
 class Default(object):
 
-    optgroup = 'Pegastudio form widgets'
+    optgroup = 'Kkadavy widgets'
 
     apps = [
-        'leonardo_form_pegastudio'
+        'leonardo_kkadavy_orders'
     ]
 
     widgets = [
-        'leonardo_form_pegastudio.widget.pegastudioform.models.PegastudioFormWidget'
+        'leonardo_kkadavy_orders.widget.kkadavyorders.models.KkadavyOrdersWidget'
     ]
     config = {
         'ORDER_DEFAULT_TO_EMAIL':
         ('to@email.com', u"E-mail, na který se budou odesílat objednávky."),
-        'COLOR_CHOICES':
-        ('color choices',(('R', 'Red'),('B', 'Blue'),('G', 'Green'),
-        ))
     }
 
     js_files = [
@@ -32,8 +29,8 @@ class Default(object):
 
 
 class Config(AppConfig, Default):
-    name = 'leonardo_form_pegastudio'
-    verbose_name = "Objednávky"
+    name = 'leonardo_kkadavy_orders'
+    verbose_name = u"Objednávky knedlíků"
 
 
 default = Default()

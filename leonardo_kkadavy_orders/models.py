@@ -5,7 +5,6 @@ from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
 import datetime
 
-
 CHOICES_TYPE_KNEDLIKY = (
  ('HOUSKOVÉ KNEDLÍKY', (
    ('khouskovy800', 'Knedlík houskový - velký 800g'),
@@ -79,61 +78,40 @@ CHOICES_TYPE_KNEDLIKY = (
 )
 
 
-class PegastudioOrders(models.Model):
-
-    jmeno = models.CharField(
-        max_length=255, verbose_name=u"Jméno", default='')
+class KkadavyOrders(models.Model):
+    jmeno = models.CharField(max_length=255, verbose_name=u"Jméno", default='')
     prijmeni = models.CharField(
         max_length=255, verbose_name=u"Příjmení", default='')
-    email = models.EmailField(
-        verbose_name=u"E-mail", default='')
-    telefon = models.PositiveIntegerField(
-        verbose_name=u"Telefon", default=0)
-    std = models.CharField(
-        max_length=255, verbose_name="st ḱód", default='')
-    pozice = models.CharField(
-        verbose_name=u"Pozice", choices=CHOICES_TYPE_KNEDLIKY, max_length=50)
-    fakulta = models.CharField(
-        verbose_name=u"Fakulta", choices=CHOICES_TYPE_KNEDLIKY, max_length=100)
-    katedra = models.CharField(
-        verbose_name=u"Katedra", choices=CHOICES_TYPE_KNEDLIKY, max_length=50)
-    budova = models.CharField(
-        verbose_name=u"Budova", choices=CHOICES_TYPE_KNEDLIKY, max_length=50)
-    patro = models.CharField(
-        verbose_name=u"Fakulta", choices=CHOICES_TYPE_KNEDLIKY, max_length=50)
-    fakturacni_udaje = models.CharField(
-        max_length=255, verbose_name=u"Faktruační údaje", default='')
-    zprava = models.TextField(
-        verbose_name=u"Zpráva", default='')
-    datum = models.DateTimeField(
-        verbose_name=u"Datum objednávky", default=timezone.now())
-
+    email = models.EmailField(verbose_name=u"E-mail", default='')
+    telefon = models.PositiveIntegerField(verbose_name=u"Telefon", default="")
+    adresa = models.CharField(max_length=255, verbose_name=u"Doručovací adresa", default='')
+    firma = models.CharField(max_length=255, verbose_name=u"Název firmy", default='', blank=True, help_text="Nepovinné pole")
+    ico = models.CharField(max_length=255, verbose_name=u"IČO", default='', blank=True, help_text=u"Nepovinné pole")
+    dic = models.CharField(max_length=255, verbose_name=u"DIČ", default='', blank=True, help_text=u"Nepovinné pole")
+    pub_date = models.DateTimeField(u'Datum objednávky', auto_now_add=True)
     def __unicode__(self):
-        return self.jmeno
+        return (self.prijmeni + self.jmeno)
+    def was_published_recently(self):
+        now = timezone.now()
+        return now - datetime.timedelta(days=2) <= self.pub_date <= now
+    was_published_recently.admin_order_field = 'pub_date'
+    was_published_recently.boolean = True
+    was_published_recently.short_description = u'Nedávno vytvořené? (2 dny)'
 
     class Meta:
-        ordering = ['jmeno', ]
-        verbose_name = 'Položka'
-        verbose_name_plural = 'Položky'
+        ordering = ['prijmeni', ]
+        verbose_name = u'Objednávka'
+        verbose_name_plural = u'Objednávky'
 
 
-class PegastudioProducts(models.Model):
-    order = models.ForeignKey(PegastudioOrders,
-        verbose_name=u"Objednávka", related_name="orderproduct_set")
-    pocet_kusu = models.PositiveIntegerField(
-        verbose_name=u"Počet kusů", default=0)
-    material = models.CharField(
-        verbose_name=u"Materiál", choices=CHOICES_TYPE_KNEDLIKY, max_length=100)
-    laminace = models.CharField(
-        verbose_name=u"Laminace", choices=CHOICES_TYPE_KNEDLIKY, max_length=100)
-    document = models.FileField(
-        upload_to='documents/')
-
+class KkadavyProducts(models.Model):
+    order = models.ForeignKey(KkadavyOrders,verbose_name=u"Objednávka", related_name="orderproduct_set")
+    type_of_product = models.CharField(verbose_name=u"Produkt", choices=CHOICES_TYPE_KNEDLIKY, max_length=100)
+    quantity = models.PositiveIntegerField(verbose_name=u"Počet")
     def __unicode__(self):
-        return self.material
+        return self.type_of_product
 
     class Meta:
-        ordering = ['material', ]
+        ordering = ['type_of_product', ]
         verbose_name = u'Produkt'
         verbose_name_plural = u'Produkty'
-
