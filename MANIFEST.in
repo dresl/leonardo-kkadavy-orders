@@ -1,0 +1,5 @@
+include MANIFEST.in
+include README.rst
+recursive-include leonardo_form_pegastudio/static *
+recursive-include leonardo_form_pegastudio/locale *
+recursive-include leonardo_form_pegastudio/templates *

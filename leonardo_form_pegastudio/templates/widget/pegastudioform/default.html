@@ -1,0 +1,33 @@
+{% extends widget.get_base_template %}
+{% load i18n %}
+
+{% block content %}
+<a class="ajax-modal btn btn-primary btn-lg order-list-btn" href="{% url 'objedn_list' %}" onclick="UpdateModalFormOrder();">Objednávací list</a>
+<script type="text/javascript">
+function UpdateModalFormOrder() {
+    var interval_id = setInterval(function(){
+        var x = document.getElementById("kkadavy_order_formset").parentElement;
+        x.style.backgroundImage="url('/static/img/pozadi_objednavaci_list.jpg')";
+        x.style.backgroundSize="cover";
+        var y = x.childNodes[1];
+        y.style.borderBottom = "none";
+        y.getElementsByTagName("H3")[0].style.color = "white";
+        y.getElementsByTagName("H3")[0].style.textAlign = "center";
+        y.getElementsByTagName("H3")[0].style.fontWeight = "bold";
+        $(".close").css("color", "#ffffff");
+        $(".close").css("font-size", "22px");
+        $(".close").css("text-shadow", "none");
+        $(".close").css("opacity", "1");
+        $(".fa.fa-expand").hide();
+        $("a.close").click(function() {    
+            var killId = setTimeout(function() {
+              for (var i = killId; i > 0; i--) clearInterval(i)
+            }, 1000);
+        });
+    }, 200);
+    setTimeOut(function(){    
+        clearInterval(interval_id);
+    }, 1000);
+}
+</script>
+{% endblock %}
