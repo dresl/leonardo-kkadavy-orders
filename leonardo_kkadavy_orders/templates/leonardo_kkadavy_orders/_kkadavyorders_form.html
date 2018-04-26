@@ -75,5 +75,18 @@ setTimeout(function(){
 {% endblock %}
 
 {% block modal-footer %}
+<style type="text/css">
+.modal-footer p {
+    color: #fff;
+}
+.modal-footer a {
+    color: #fff;
+    text-decoration: underline;
+}
+.modal-footer a:hover {
+    text-decoration: none;
+}
+</style>
+<p>Kliknutím na tlačítko "Potvrdit" dáváte souhlas k odeslání tohoto formuláře se všemi údaji. Více informací naleznete na stránce <a style="font-weight: bold;" href="/informace-o-webu#gdpr-info">Informace o webu</a></p>
 <i style="color: #d4d4d4">Pole označená hvězdičkou (<span style="color: #d22019">*</span>) jsou povinná.</i>
 {% endblock %}
