@@ -41,13 +41,14 @@ def my_handle(self, request, data):
 
     return instance
 
-SelfHandlingModelForm.handle = my_handle
 
 class KkadavyOrderForm(SelfHandlingModelForm):
 
     class Meta:
         model = KkadavyOrders
         exclude = ()
+
+KkadavyOrderForm.handle = my_handle
 
 KkadavyOrderFormSet = inlineformset_factory(KkadavyOrders, KkadavyProducts,
                                             form=KkadavyOrderForm, extra=1)
